@@ -8,8 +8,7 @@ const buttonNext = document.querySelector('.btn-next');
 const buttonInfo = document.querySelector('.btn-info');
 
 const pokemonInfosAbilities = document.querySelector('.list-abilities');
-const moreDetails = document.querySelector('.details');
-
+const pokemonInfosType = document.querySelector('.list-type');
 let searchPokemon = 1;
 
 const fetchPokemon = async (pokemon) => {
@@ -49,6 +48,7 @@ const detailPokemons = async (pokemon) => {
 
     if (data) {
         createListDetailsAbilitiesPokemons(data);
+        createListTypePokemon(data);
     } else {
         pokemonImage.style.display = 'none';
         pokemonName.innerHTML = 'Not found :c';
@@ -56,17 +56,32 @@ const detailPokemons = async (pokemon) => {
     }
 };
 
-const createListDetailsAbilitiesPokemons = async (data) => {
+const createListDetailsAbilitiesPokemons = (data) => {
     let mapDetails = data['abilities'];
     let createListDetailsAbilities;
     let detailsAbilities;
 
     mapDetails.map((element) => {
         createListDetailsAbilities = document.createElement('li');
-        createListDetailsAbilities.classList.add('details__nameAbilities');
+        createListDetailsAbilities.classList.add('details__style-Li');
         detailsAbilities = document.createTextNode(element.ability.name);
         createListDetailsAbilities.appendChild(detailsAbilities);
         pokemonInfosAbilities.appendChild(createListDetailsAbilities);
+    });
+};
+
+const createListTypePokemon = async (data) => {
+    let mapType = await data['types'];
+    let createListType;
+    let typePokemon;
+
+    console.log(mapType);
+    mapType.map((element) => {
+        createListType = document.createElement('li');
+        createListType.classList.add('details__style-Li');
+        typePokemon = document.createTextNode(element.type.name);
+        createListType.appendChild(typePokemon);
+        pokemonInfosType.appendChild(createListType);
     });
 };
 
