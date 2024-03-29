@@ -75,7 +75,6 @@ const createListTypePokemon = async (data) => {
     let createListType;
     let typePokemon;
 
-    console.log(mapType);
     mapType.map((element) => {
         createListType = document.createElement('li');
         createListType.classList.add('details__style-Li');
@@ -84,6 +83,8 @@ const createListTypePokemon = async (data) => {
         pokemonInfosType.appendChild(createListType);
     });
 };
+
+function clearInfosPokemon() {}
 
 pokemonForm.addEventListener('submit', (evento) => {
     evento.preventDefault();
