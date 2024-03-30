@@ -26,7 +26,7 @@ const renderPokemon = async (pokemon) => {
     pokemonName.innerHTML = 'Loading...';
     pokemonNumber.innerHTML = '';
     let data = await fetchPokemon(pokemon);
-
+    clearInfosPokemon()
     if (data) {
         pokemonImage.style.display = 'block';
         pokemonName.innerHTML = data.name;
@@ -47,7 +47,7 @@ const detailPokemons = async (pokemon) => {
     let data = await fetchPokemon(pokemon);
 
     if (data) {
-       
+        clearInfosPokemon()
         createListDetailsAbilitiesPokemons(data);
         createListTypePokemon(data);
     } else {
@@ -85,7 +85,23 @@ const createListTypePokemon = async (data) => {
     });
 };
 
-function clearInfosPokemon() { }
+function clearInfosPokemon() {
+    let testeLimpaTela = document.getElementById('details-pokemon');
+    let testeLimpaTela2 = document.getElementById('details-pokemon-type');
+
+    while (testeLimpaTela.firstChild && testeLimpaTela2) {
+        testeLimpaTela.removeChild(testeLimpaTela.firstChild)
+        testeLimpaTela2.removeChild(testeLimpaTela2.firstChild)
+    }
+    /*
+    while(testeLimpaTela.children.length > 0 
+          && testeLimpaTela2.children.length > 0) {
+          testeLimpaTela.removeChild(testeLimpaTela.children[0]);
+          testeLimpaTela2.removeChild(testeLimpaTela2.children[0]);
+      }
+    
+    */
+}
 
 pokemonForm.addEventListener('submit', (evento) => {
     evento.preventDefault();
@@ -103,9 +119,11 @@ buttonPrev.addEventListener('click', (evento) => {
 buttonNext.addEventListener('click', (evento) => {
     searchPokemon += 1;
     renderPokemon(searchPokemon);
+
 });
 
 buttonInfo.addEventListener('click', (evento) => {
+
     detailPokemons(searchPokemon);
 });
 
