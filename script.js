@@ -33,7 +33,7 @@ const renderPokemon = async (pokemon) => {
         pokemonNumber.innerHTML = data.id;
         pokemonImage.src =
             data['sprites']['versions']['generation-v']['black-white'][
-                'animated'
+            'animated'
             ]['front_default'];
         searchPokemon = data.id;
     } else {
@@ -47,6 +47,7 @@ const detailPokemons = async (pokemon) => {
     let data = await fetchPokemon(pokemon);
 
     if (data) {
+       
         createListDetailsAbilitiesPokemons(data);
         createListTypePokemon(data);
     } else {
@@ -84,7 +85,7 @@ const createListTypePokemon = async (data) => {
     });
 };
 
-function clearInfosPokemon() {}
+function clearInfosPokemon() { }
 
 pokemonForm.addEventListener('submit', (evento) => {
     evento.preventDefault();
